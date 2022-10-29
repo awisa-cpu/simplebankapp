@@ -9,6 +9,23 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  late TextEditingController _accNumber;
+  late TextEditingController _password;
+
+  @override
+  void initState() {
+    _accNumber = TextEditingController();
+    _password = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _accNumber.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +34,19 @@ class _LoginState extends State<Login> {
       ),
       body: Column(
         children: [
-          const TextField(),
-          const TextField(),
+          const Text('Account Number'),
+          TextField(
+            controller: _accNumber,
+            autocorrect: false,
+            enableSuggestions: false,
+          ),
+          const Text('Password'),
+          TextField(
+            controller: _password,
+            autocorrect: false,
+            enableSuggestions: false,
+            obscureText: true,
+          ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pushNamedAndRemoveUntil(

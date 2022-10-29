@@ -101,7 +101,10 @@ class HomePage extends StatelessWidget {
               onSelected: (value) {
                 switch (value) {
                   case MenuAction.signout:
-                    Navigator.of(context).pushNamed(login);
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      login,
+                      (route) => false,
+                    );
                     break;
                   default:
                 }
