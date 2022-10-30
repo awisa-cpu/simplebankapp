@@ -88,23 +88,28 @@ class HomePage extends StatelessWidget {
                     value: MenuAction.settings,
                     child: Text('Settings'),
                   ),
-                  const PopupMenuItem(
-                    value: MenuAction.zenithnearme,
-                    child: Text('Zenith Near Me'),
-                  ),
+                  // const PopupMenuItem(
+                  //   value: MenuAction.zenithnearme,
+                  //   child: Text('Zenith Near Me'),
+                  // ),
                   const PopupMenuItem(
                     value: MenuAction.signout,
                     child: Text('Sign Out'),
                   ),
                 ];
               },
-              onSelected: (value) {
+              onSelected: (value) async {
                 switch (value) {
                   case MenuAction.signout:
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                      login,
-                      (route) => false,
-                    );
+                    bool answer = await showLogOutMenu(context);
+
+                    if (answer) {
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                        login,
+                        (route) => false,
+                      );
+                    }
+
                     break;
                   default:
                 }
@@ -116,4 +121,30 @@ class HomePage extends StatelessWidget {
           child: CircularProgressIndicator(),
         ));
   }
+}
+
+Future<bool> showLogOutMenu(BuildContext context) {
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Log Out '),
+        content: const Text('Are you sure you want to log out?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+            child: const Text('Log Out'),
+          )
+        ],
+      );
+    },
+  ).then((value) => value ?? false);
 }
