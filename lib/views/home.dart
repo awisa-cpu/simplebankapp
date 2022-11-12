@@ -1,6 +1,8 @@
 import 'package:basicapp/constants/routes.dart';
 import 'package:flutter/material.dart';
 
+import '../utilities/utilities.dart';
+
 enum MenuAction {
   overview,
   transfer,
@@ -88,10 +90,6 @@ class HomePage extends StatelessWidget {
                     value: MenuAction.settings,
                     child: Text('Settings'),
                   ),
-                  // const PopupMenuItem(
-                  //   value: MenuAction.zenithnearme,
-                  //   child: Text('Zenith Near Me'),
-                  // ),
                   const PopupMenuItem(
                     value: MenuAction.signout,
                     child: Text('Sign Out'),
@@ -121,30 +119,4 @@ class HomePage extends StatelessWidget {
           child: CircularProgressIndicator(),
         ));
   }
-}
-
-Future<bool> showLogOutMenu(BuildContext context) {
-  return showDialog<bool>(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text('Log Out '),
-        content: const Text('Are you sure you want to log out?'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(false);
-            },
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(true);
-            },
-            child: const Text('Log Out'),
-          )
-        ],
-      );
-    },
-  ).then((value) => value ?? false);
 }
