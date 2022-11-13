@@ -1,0 +1,11 @@
+/*
+TODO
+ 1. Login with fingerprint needs to implement a display button 
+ 2.Forgot password needs to navigate to a reset password page when clicked
+ 3.SignIn needs to navigate to the homepage when clicked and all possible 
+ auth errors needs to be handled
+ 4. Textfields needs to be restrained to certain constaints 
+ >Account Number field pops up the numbers keyboard only and can only accept 10 digits
+ >password filed pops up the numbers keyboard only and can only accept 6 numbers
+ 5.The Row needs to be worked on to accomodate the checkBox widget and it needs to be customized
+*/
